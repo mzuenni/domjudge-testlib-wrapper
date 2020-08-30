@@ -1,4 +1,11 @@
 // define exitcodes for testlib.h
+#ifndef _DOMJUDGE_TESTLIB_H_
+#define _DOMJUDGE_TESTLIB_H_
+
+#ifdef _TESTLIB_H_
+#error testlib.h included
+#endif
+
 #ifdef OK_EXIT_CODE
 #   undef OK_EXIT_CODE
 #endif
@@ -60,3 +67,4 @@ void registerInteraction(int argc, char* argv[]) {
 	ArgConvert tmp(argc, argv);
 	_domjudge_registerInteraction(tmp.argc(), tmp.argv());
 }
+#endif
