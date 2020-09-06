@@ -38,7 +38,7 @@
 #undef registerTestlibCmd
 
 struct ArgConvert {
-	std::string binary, testin, testout, feedback;
+	std::string binary, testin, testout, feedback, error;
 	std::vector<char*> testlibArgs;
 	ArgConvert(int argc, char* argv[]) {
 		if (argc != 4) quit(_fail, "wrong number of parameters!");
@@ -47,14 +47,17 @@ struct ArgConvert {
 		testout = std::string(argv[2]);
 		feedback = std::string(argv[3]);
 		feedback += "/judgemessage.txt";
+		error = std::string(argv[3]);
+		error += "/judgeerror.txt";
 
 		testlibArgs.push_back(&binary[0]);
 		testlibArgs.push_back(&testin[0]);
 		testlibArgs.push_back(&feedback[0]);
 		testlibArgs.push_back(&testout[0]);
+		testlibArgs.push_back(&error[0]);
 		testlibArgs.push_back(nullptr);
 	}
-	int argc() {return 4;}
+	int argc() {return 5;}
 	char** argv() {return testlibArgs.data();}
 };
 
